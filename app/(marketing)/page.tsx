@@ -1,27 +1,58 @@
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import hero from "../../public/hero.png";
+import Link from "next/link";
+import {
+  ClerkLoaded,
+  ClerkLoading,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+} from "@clerk/nextjs";
+import { Loader } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className=" p-4 space-y-4 flex flex-col max-w-[200px]">
-      <Button variant="default">default </Button>
-      <Button variant="primary">primary </Button>
-      <Button variant="primaryOutline">primary outline</Button>
-
-      <Button variant="secondary">secondary </Button>
-      <Button variant="secondaryOutline">secondary</Button>
-
-      <Button variant="danger">danger </Button>
-      <Button variant="dangerOutline">danger</Button>
-
-      <Button variant="super">super </Button>
-      <Button variant="superOutline">super</Button>
-
-      <Button variant="ghost">ghost</Button>
-
-      <Button variant="sidebar">sidebar </Button>
-      <Button variant="sidebarOutline">sidebar</Button>
-
-
+    <div className="  max-w-[988px] mx-auto flex-1 w-full flex flex-col lg:flex-row items-center justify-center p-4 gap-2">
+      <div className=" relative w-[240px] h-[240px] lg:w-[424px] lg:h-[424px] mb-8 lg:mb-0">
+        <Image src={hero} alt="herosection" />
+      </div>
+      <div className=" flex flex-col items-center gap-y-8">
+        <h1 className=" text-xl lg:text-3xl font-bold text-neutral-600 max-w-[480px] text-center">
+          Learn,pratice different languages in a single platform .
+        </h1>
+      </div>
+      <ClerkLoading>
+        <Loader className="  h-5 w-5 text-muted-foreground" />
+      </ClerkLoading>
+      <ClerkLoaded>
+        <SignedOut>
+          <SignUpButton
+            mode="modal"
+            afterSignInUrl="/learn"
+            afterSignUpUrl="/learn"
+          >
+            <Button size="lg" variant="secondary" className=" w-full">
+              Get started
+            </Button>
+          </SignUpButton>
+          <SignInButton
+            mode="modal"
+            afterSignInUrl="/learn"
+            afterSignUpUrl="/learn"
+          >
+            <Button size="lg" variant="primary" className=" w-full">
+              I have already an account.
+            </Button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <Button size="lg" variant="secondary" className="w-full" asChild>
+            <Link href="/learn">Continue Learning</Link>
+          </Button>
+        </SignedIn>
+      </ClerkLoaded>
     </div>
   );
 }
