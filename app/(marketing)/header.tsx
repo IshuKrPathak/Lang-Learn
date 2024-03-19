@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import logo from "../../public/profile.png";
+import logo from "../../public/logo.png";
 import {
   ClerkLoaded,
   ClerkLoading,
