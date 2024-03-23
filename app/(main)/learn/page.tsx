@@ -9,7 +9,7 @@ const LearnPage = () => {
     <div className="  flex flex-row-reverse gap-[48px] px-6">
       <StickyWrapper>
         <UserProgress 
-        activeCourse = {{ title:"spanish",imageSrc:"/flag.png"}}
+        activeCourse = {{ title:"India",imageSrc:"/flag.png"}}
         hearts={5}
         points={100}
         hasActiveSubscription = {false}
